@@ -17,6 +17,9 @@ You are an amorphous blob....
 You interact with _Actors_, which have the following attributes:
 * They are mobile, or stationary.
 * They are safe to absorb or toxic.
+* They have an associated physical volume.
 * If you touch a safe actor, you will absorb its _volume_ and add it to your own (i.e. diminishing returns as you get larger).
 * If you touch a toxic actor, you will subtract its volume from your own. If you drop to 0 or below, game over.
 * A winning condition is to reach a certain goal in a specified time.
+* and others as the game evolves.
+
