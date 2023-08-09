@@ -5,7 +5,14 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
 
-    public DataManager Instance;
+    public static DataManager Instance;
+    public bool SkipHowtoScene { get; set; } = false;
+    public string TitleSceneName { get; protected set; } = "TitleScene";
+    public string MainScene { get; protected set; } = "MainScene";
+    public string GameOverScene { get; protected set; } = "GameOverScene";
+    public string SettingsScene { get; protected set; } = "SettingsScene";
+    public string HowtoScene { get; protected set; } = "HowtoScene";
+
     public void Awake()
     {
         if (Instance != null)
@@ -32,6 +39,11 @@ public class DataManager : MonoBehaviour
     // Class containing relevant data.
     class GameData
     {
-        public bool SkipHowtoScene { get; set; }
+        public bool SkipHowtoScene { get; protected set; }
+        string TitleSceneName;
+        string MainScene;
+        string GameOverScene;
+        string SettingsScene;
+        string HowtoScene;
     }
 }
