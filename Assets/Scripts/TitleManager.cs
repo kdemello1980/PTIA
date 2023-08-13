@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class TitleManager : MonoBehaviour
 {
@@ -28,15 +25,11 @@ public class TitleManager : MonoBehaviour
 
     }
 
-    // Quit the application, or exit play mode if in the editor.
-    public void QuitGame()
+    public void Quit()
     {
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#else
-        Application.Quit();
-#endif
+        DataManager.Instance.QuitGame();
     }
+
 
     // Kick off the game by loading the game scene.
     public void LoadGameScene()
@@ -67,6 +60,8 @@ public class TitleManager : MonoBehaviour
     // Load main game scene.
     public void LoadMainScene()
     {
-        SceneManager.LoadScene(DataManager.Instance.MainScene);
+        // SceneManager.LoadScene(DataManager.Instance.MainScene);
+        DataManager.Instance.GoToMainScene();
+        // Debug.Log(DataManager.Instance.TitleSceneName);
     }
 }

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class DataManager : MonoBehaviour
 {
 
-    public static DataManager Instance;
+    public static DataManager Instance { get; private set; }
     public bool SkipHowtoScene { get; set; } = false;
     public string TitleSceneName { get; protected set; } = "TitleScene";
     public string MainScene { get; protected set; } = "MainScene";
@@ -15,7 +19,7 @@ public class DataManager : MonoBehaviour
 
     public void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -36,10 +40,48 @@ public class DataManager : MonoBehaviour
 
     }
 
+    public void GoToTitleScene()
+    {
+        SceneManager.LoadScene(TitleSceneName);
+    }
+
+    public void GoToMainScene()
+    {
+        SceneManager.LoadScene(MainScene);
+    }
+
+    public void GoToGameOverScene()
+    {
+        SceneManager.LoadScene(GameOverScene);
+    }
+
+    public void GoToSettingsScene()
+    {
+        SceneManager.LoadScene(SettingsScene);
+    }
+
+    public void GoToHowToScene()
+    {
+        SceneManager.LoadScene(HowtoScene);
+    }
+
+
+    // Quit the application, or exit play mode if in the editor.
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit();
+#endif
+    }
+
+
     // Class containing relevant data.
-    class GameData
+    public class GameData
     {
         public bool SkipHowtoScene { get; protected set; }
+        public bool IsPaused { get; protected set; }
         string TitleSceneName;
         string MainScene;
         string GameOverScene;
