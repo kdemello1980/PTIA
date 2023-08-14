@@ -7,11 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-    // Buttons to navigate to settings, maing game and to quit.
-    [SerializeField] private Button startButton;
-    [SerializeField] private Button quitButton;
-    [SerializeField] private Button settingsButton;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,21 +42,18 @@ public class TitleManager : MonoBehaviour
     // Load the game settings scene.
     public void LoadSettingsScene()
     {
-        // Load the settings scene.
-        SceneManager.LoadScene(DataManager.Instance.SettingsScene);
+        DataManager.Instance.GoToSettingsScene();
     }
 
     // Load the game howto scene.
     public void LoadHowtoScene()
     {
-        SceneManager.LoadScene(DataManager.Instance.HowtoScene);
+        DataManager.Instance.GoToHowToScene();
     }
 
     // Load main game scene.
     public void LoadMainScene()
     {
-        // SceneManager.LoadScene(DataManager.Instance.MainScene);
         DataManager.Instance.GoToMainScene();
-        // Debug.Log(DataManager.Instance.TitleSceneName);
     }
 }
