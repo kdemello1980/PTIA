@@ -10,12 +10,17 @@ public class DataManager : MonoBehaviour
 {
 
     public static DataManager Instance { get; private set; }
-    public bool SkipHowtoScene { get; set; } = false;
+    public bool SkipHowtoScene { get; set; } = true;
+    public bool IsPaused { get; set; } = false;
     public string TitleSceneName { get; protected set; } = "TitleScene";
     public string MainScene { get; protected set; } = "MainScene";
     public string GameOverScene { get; protected set; } = "GameOverScene";
     public string SettingsScene { get; protected set; } = "SettingsScene";
     public string HowtoScene { get; protected set; } = "HowtoScene";
+
+    // Save slots
+    public string[] SaveSlots = new string[5];
+    // public List<string> SaveSlots = new List<string>();
 
     public void Awake()
     {

@@ -33,7 +33,7 @@ public class FirstPersonPlayerController : MonoBehaviour
 
     // The vector AddForce is applied to to move the player
     Vector3 moveDirection;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,7 @@ public class FirstPersonPlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // transform.rotation = orientation.rotation;
         MovePlayerWithKeyboard();
@@ -62,11 +62,7 @@ public class FirstPersonPlayerController : MonoBehaviour
         // playerRbPositionLastFrame = playerRb.transform.position;
     }
 
-    private void FixedUpdate() 
-    {
-    }
 
-    
     // Move the player
     void MovePlayerWithKeyboard()
     {
@@ -107,11 +103,24 @@ public class FirstPersonPlayerController : MonoBehaviour
     }
 
     // Land
-    private void OnCollisionEnter(Collision other) 
+    private void OnCollisionEnter(Collision other)
     {
-        if (!onGround && other.gameObject.CompareTag("Ground"))    
+        if (!onGround && other.gameObject.CompareTag("Ground"))
         {
             onGround = true;
         }
     }
+
+    // Spin
+    // private void Spin(KeyCode code)
+    // {
+    //     if (code == KeyCode.Q)
+    //     {
+    //         playerRb.AddTorque(-orientation.right);
+    //     }
+    //     if (code == KeyCode.E)
+    //     {
+    //         playerRb.AddTorque(orientation.right);
+    //     }
+    // }
 } // end

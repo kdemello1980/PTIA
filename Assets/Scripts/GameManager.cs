@@ -22,34 +22,42 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // Set the cursor lockstate on load
+    void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
         // Check for ESC press and pause if detected.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            TogglePause();
         }
     }
 
     // Pause
-    public void Pause()
+    public void TogglePause()
     {
-        // Show the pause UI objects on the canvas.
-        pauseScreen.gameObject.SetActive(true);
-
-        // Pause execution of the game.
-        Time.timeScale = 0;
-    }
-
-    // Resume
-    public void Resume()
-    {
-        // Show the pause UI objects on the canvas.
-        pauseScreen.gameObject.SetActive(false);
-
-        // Resume execution of the game.
-        Time.timeScale = 1;
+        if (DataManager.Instance.IsPaused)
+        {
+            DataManager.Instance.IsPaused = false;
+            pauseScreen.gameObject.SetActive(false);
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            DataManager.Instance.IsPaused = true;
+            pauseScreen.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     // Main Menu
