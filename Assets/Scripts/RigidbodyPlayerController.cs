@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonPlayerController : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class RigidbodyPlayerController : MonoBehaviour
 {
     // User inputs
     private float mouseInputX;
