@@ -11,23 +11,21 @@ public class Actor : MonoBehaviour
     public virtual float ActorVolume { get; set; } = 0.5f;
 
     // Safe or toxic. Default to safe (true)
-    public virtual bool IsSafe { get; set; } = true;
+    public virtual bool IsToxic { get; set; } = false;
 
     // Mobile or stationary. Default to mobile.
     public virtual bool IsMobile { get; protected set; } = true;
 
     // Rigidbody. All Actors have a Rigidbody.
-    public Rigidbody actorRb { get; private set; }
 
     // The player's rigidbody
-    protected Rigidbody playerRb { get; private set; }
+    protected GameObject playerGameObject { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize the Rigidbody
-        actorRb = gameObject.GetComponent<Rigidbody>();
-        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+        playerGameObject = GameObject.FindWithTag("Player").GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -43,5 +41,9 @@ public class Actor : MonoBehaviour
 
     }
 
-    /// <summary>Consume()</summary>
+    /// <summary>Consume() is called by the collision of 2 Actors and determines what happens with each.</summary>
+    public virtual void Consume()
+    {
+
+    }
 }

@@ -24,10 +24,10 @@ public class RigidbodyPlayerController : Actor
     [SerializeField] private float maxVelocity = 20.0f;
 
     // Player Rigidbody
-    // private Rigidbody playerRb;
+    // private Rigidbody playerGameObject;
 
     // Position of the player in the previous frame
-    private Vector3 playerRbPositionLastFrame;
+    private Vector3 playerGameObjectPositionLastFrame;
 
     // Transform that stores the player's forward direction
     private Transform orientation;
@@ -39,7 +39,7 @@ public class RigidbodyPlayerController : Actor
     // Start is called before the first frame update
     void Start()
     {
-        // playerRb = GetComponent<Rigidbody>();
+        // playerGameObject = GetComponent<Rigidbody>();
         // startingPosition = transform.position;
         // startingRotation = transform.rotation;
         orientation = GameObject.Find("PlayerOrientation").GetComponent<Transform>();
@@ -60,7 +60,7 @@ public class RigidbodyPlayerController : Actor
 
     void LateUpdate()
     {
-        // playerRbPositionLastFrame = playerRb.transform.position;
+        // playerGameObjectPositionLastFrame = playerGameObject.transform.position;
     }
 
 
@@ -73,11 +73,11 @@ public class RigidbodyPlayerController : Actor
             verticalInput = Input.GetAxisRaw("Vertical");
 
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            playerRb.AddForce(moveDirection.normalized * velocity, ForceMode.Force);
+            playerGameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
 
-            if (playerRb.velocity.magnitude > maxVelocity)
+            if (playerGameObject.GetComponent<Rigidbody>().velocity.magnitude > maxVelocity)
             {
-                playerRb.AddForce(moveDirection.normalized * -velocity, ForceMode.Force);
+                playerGameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * -velocity, ForceMode.Force);
             }
             // SlowDown();
         }
@@ -88,8 +88,8 @@ public class RigidbodyPlayerController : Actor
     {
         if (horizontalInput == 0 && verticalInput == 0)
         {
-            playerRb.AddForce(-moveDirection.normalized * slowDownFactor * velocity, ForceMode.Force);
-            // playerRb.velocity = new Vector3(0, 0, 0);
+            playerGameObject.GetComponent<Rigidbody>().AddForce(-moveDirection.normalized * slowDownFactor * velocity, ForceMode.Force);
+            // playerGameObject.velocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -99,7 +99,7 @@ public class RigidbodyPlayerController : Actor
         if (onGround)
         {
             onGround = false;
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerGameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
     }
@@ -118,11 +118,11 @@ public class RigidbodyPlayerController : Actor
     // {
     //     if (code == KeyCode.Q)
     //     {
-    //         playerRb.AddTorque(-orientation.right);
+    //         playerGameObject.AddTorque(-orientation.right);
     //     }
     //     if (code == KeyCode.E)
     //     {
-    //         playerRb.AddTorque(orientation.right);
+    //         playerGameObject.AddTorque(orientation.right);
     //     }
     // }
 } // end

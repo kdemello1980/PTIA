@@ -35,14 +35,15 @@ public class MobileController : Actor
     // in the direction of the player.
     public virtual void Move()
     {
-        playerRb.AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
+        // playerRb.AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
+        playerGameObject.GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
     }
 
     // Returns a normalized Vector3 pointing the the direction of 
     // the player.
     public virtual Vector3 FindPlayer()
     {
-        Vector3 result = playerRb.position - gameObject.transform.position;
+        Vector3 result = playerGameObject.transform.position - gameObject.transform.position;
         return result.normalized;
     }
 }
