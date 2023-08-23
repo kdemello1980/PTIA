@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class RigidbodyPlayerController : MonoBehaviour
+public class RigidbodyPlayerController : Actor
 {
     // User inputs
     private float mouseInputX;
@@ -24,7 +24,7 @@ public class RigidbodyPlayerController : MonoBehaviour
     [SerializeField] private float maxVelocity = 20.0f;
 
     // Player Rigidbody
-    private Rigidbody playerRb;
+    // private Rigidbody playerRb;
 
     // Position of the player in the previous frame
     private Vector3 playerRbPositionLastFrame;
@@ -39,7 +39,7 @@ public class RigidbodyPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
+        // playerRb = GetComponent<Rigidbody>();
         // startingPosition = transform.position;
         // startingRotation = transform.rotation;
         orientation = GameObject.Find("PlayerOrientation").GetComponent<Transform>();
@@ -101,6 +101,7 @@ public class RigidbodyPlayerController : MonoBehaviour
             onGround = false;
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+
     }
 
     // Land

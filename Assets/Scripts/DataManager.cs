@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
+/// <summary>
+/// The DataManager is a singleton that manages game state and save data.
+/// </summary> 
 public class DataManager : MonoBehaviour
 {
-
+    /// <summary>The <c>Instance</c> property is a static reference to the DataManager</summary>
     public static DataManager Instance { get; private set; }
+
+    /// <value><c>SkipHowtoScene</c> specifies whether a how to play screen should be shown in between the title scene and the main game scene.</value>
     public bool SkipHowtoScene { get; set; } = true;
     public bool IsPaused { get; set; } = false;
     public string TitleSceneName { get; protected set; } = "TitleScene";

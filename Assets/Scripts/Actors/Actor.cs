@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Actor is the base class of objects that the player interacts with.
 // They are either safe or toxic, mobile or stationary, and have hit points.
-
+[RequireComponent(typeof(Rigidbody))]
 public class Actor : MonoBehaviour
 {
     // Size of actor. Arbitrarily defaulted to .5.
@@ -42,4 +42,6 @@ public class Actor : MonoBehaviour
     {
 
     }
+
+    /// <summary>Consume()</summary>
 }
