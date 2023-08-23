@@ -25,7 +25,7 @@ public class Actor : MonoBehaviour
     void Start()
     {
         // Initialize the Rigidbody
-        playerGameObject = GameObject.FindWithTag("Player").GetComponent<GameObject>();
+        playerGameObject = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame

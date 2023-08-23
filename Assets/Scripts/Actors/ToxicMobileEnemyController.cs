@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToxicMobileEnemyController : MobileController
+public class ToxicMobileEnemyController : MobileController // INHERITANCE
 {
     // Start is called before the first frame update
     void Start()

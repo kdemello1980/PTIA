@@ -51,7 +51,7 @@ public class RigidbodyPlayerController : Actor
     void FixedUpdate()
     {
         // transform.rotation = orientation.rotation;
-        MovePlayerWithKeyboard();
+        Move();
         if (Input.GetKeyDown(jumpKey))
         {
             Jump();
@@ -65,7 +65,7 @@ public class RigidbodyPlayerController : Actor
 
 
     // Move the player
-    void MovePlayerWithKeyboard()
+    void Move()
     {
         if (onGround)
         {
@@ -73,11 +73,11 @@ public class RigidbodyPlayerController : Actor
             verticalInput = Input.GetAxisRaw("Vertical");
 
             moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            playerGameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
+            GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
 
-            if (playerGameObject.GetComponent<Rigidbody>().velocity.magnitude > maxVelocity)
+            if (GetComponent<Rigidbody>().velocity.magnitude > maxVelocity)
             {
-                playerGameObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * -velocity, ForceMode.Force);
+                GetComponent<Rigidbody>().AddForce(moveDirection.normalized * -velocity, ForceMode.Force);
             }
             // SlowDown();
         }
@@ -88,7 +88,7 @@ public class RigidbodyPlayerController : Actor
     {
         if (horizontalInput == 0 && verticalInput == 0)
         {
-            playerGameObject.GetComponent<Rigidbody>().AddForce(-moveDirection.normalized * slowDownFactor * velocity, ForceMode.Force);
+            GetComponent<Rigidbody>().AddForce(-moveDirection.normalized * slowDownFactor * velocity, ForceMode.Force);
             // playerGameObject.velocity = new Vector3(0, 0, 0);
         }
     }
@@ -99,7 +99,7 @@ public class RigidbodyPlayerController : Actor
         if (onGround)
         {
             onGround = false;
-            playerGameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
     }
@@ -113,16 +113,4 @@ public class RigidbodyPlayerController : Actor
         }
     }
 
-    // Spin
-    // private void Spin(KeyCode code)
-    // {
-    //     if (code == KeyCode.Q)
-    //     {
-    //         playerGameObject.AddTorque(-orientation.right);
-    //     }
-    //     if (code == KeyCode.E)
-    //     {
-    //         playerGameObject.AddTorque(orientation.right);
-    //     }
-    // }
 } // end
