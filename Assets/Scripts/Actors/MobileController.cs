@@ -13,6 +13,7 @@ public class MobileController : Actor // INHERITANCE
     void Start()
     {
         IsMobile = true;
+        StartCoroutine(ChangeDirection());
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class MobileController : Actor // INHERITANCE
         // {
         //     Debug.Log("foo");
         // }
-
+        // Move();
     }
 
     // Apply a ForceMultiplier magnitude Impulse to the actor
@@ -45,5 +46,17 @@ public class MobileController : Actor // INHERITANCE
     {
         Vector3 result = playerGameObject.transform.position - gameObject.transform.position;
         return result.normalized;
+    }
+
+    public IEnumerator ChangeDirection()
+    {
+        // Debug.Log("ChangeDirection()");
+        while (!DataManager.Instance.IsPaused)
+        {
+            float randomSeconds = Random.Range(.25f, 1.5f);
+            // Debug.Log("Moving controller in randomSeconds" + randomSeconds);
+            Move();
+            yield return new WaitForSeconds(randomSeconds);
+        }
     }
 }

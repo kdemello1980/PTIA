@@ -51,68 +51,53 @@ public class Actor : MonoBehaviour
         // • When one is toxic and the other is non - toxic
         //     ◦ If the larger one is non - toxic, then the volume of the toxic one is subtracted
         //     ◦ if they are the same size or the non - toxic one is smaller, the non-toxic one is annihilated.
-        if (!prey.IsToxic && !IsToxic)
+        if ((!IsToxic && !prey.IsToxic) || (IsToxic && prey.IsToxic))
         {
-            // prey absorbs
-            if (prey.ActorVolume > ActorVolume)
-            {
-                prey.ActorVolume += ActorVolume;
-                if (!gameObject.CompareTag("Player"))
-                {
-                    Destroy(gameObject);
-                }
-            }
-            // absorbs prey
-            else if (prey.ActorVolume <= ActorVolume)
+            // Absorb the prey
+            if (ActorVolume > prey.ActorVolume)
             {
                 ActorVolume += prey.ActorVolume;
+
+                // Destroy the prey object if it isn't the player
                 if (!prey.gameObject.CompareTag("Player"))
                 {
                     Destroy(prey.gameObject);
                 }
             }
-            // they bounce off
-            else if (prey.ActorVolume == ActorVolume)
+            else if (ActorVolume <= prey.ActorVolume)
             {
+                // ActorVolume becomes 0. We destroy our object if we're not the player.
+                // If we are the player, we go to game over.
+                ActorVolume = 0;
+                if (!prey.gameObject.CompareTag("Player"))
+                {
+                    DataManager.Instance.GoToGameOverScene();
+                }
+                else
+                {
+                    Destroy(prey.gameObject);
+                }
             }
+            // else if (ActorVolume == prey.ActorVolume)
+            // {
+            // }
         }
-        else if (prey.IsToxic && IsToxic)
+        else
         {
-            if (prey.ActorVolume > ActorVolume)
+            // If our volume is greater than that of our toxic prey, take the hit.
+            if (ActorVolume > prey.ActorVolume)
             {
+                ActorVolume -= prey.ActorVolume;
             }
-            else if (prey.ActorVolume <= ActorVolume)
+            // Otherwise, we drop to 0 or below, so it's game over.
+            else
             {
-            }
-            else if (prey.ActorVolume == ActorVolume)
-            {
-            }
-        }
-        else if (prey.IsToxic && !IsToxic)
-        {
-            if (prey.ActorVolume > ActorVolume)
-            {
-            }
-            else if (prey.ActorVolume <= ActorVolume)
-            {
-            }
-            else if (prey.ActorVolume == ActorVolume)
-            {
-            }
-        }
-        else if (!prey.IsToxic && IsToxic)
-        {
-            if (prey.ActorVolume > ActorVolume)
-            {
-            }
-            else if (prey.ActorVolume <= ActorVolume)
-            {
-            }
-            else if (prey.ActorVolume == ActorVolume)
-            {
+                DataManager.Instance.GoToGameOverScene();
             }
         }
     }
+
+
 
 
     /// <summary>Trigger Consume() when a Rigidbody collision is entered.</summary>
