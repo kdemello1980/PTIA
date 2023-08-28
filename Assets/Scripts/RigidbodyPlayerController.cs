@@ -23,9 +23,6 @@ public class RigidbodyPlayerController : Actor
     [SerializeField] private float velocity = 10.0f;
     [SerializeField] private float maxVelocity = 20.0f;
 
-    // Player Rigidbody
-    // private Rigidbody playerGameObject;
-
     // Position of the player in the previous frame
     private Vector3 playerGameObjectPositionLastFrame;
 
@@ -39,9 +36,6 @@ public class RigidbodyPlayerController : Actor
     // Start is called before the first frame update
     void Start()
     {
-        // playerGameObject = GetComponent<Rigidbody>();
-        // startingPosition = transform.position;
-        // startingRotation = transform.rotation;
         orientation = GameObject.Find("PlayerOrientation").GetComponent<Transform>();
         onGround = true;
         Physics.gravity = new Vector3(0, -10.0f, 0);
@@ -65,7 +59,7 @@ public class RigidbodyPlayerController : Actor
 
 
     // Move the player
-    void Move()
+    void Move() // POLYMORPHISM
     {
         if (onGround)
         {
