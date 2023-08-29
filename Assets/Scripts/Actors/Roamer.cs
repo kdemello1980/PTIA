@@ -2,8 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// The Roamer class represents a clade of Actors that hop around in random directions. 
+/// </summary>
 public class Roamer : MobileController // INHERITANCE
 {
+    // Variables unique to the Roamer clade.
+    public float minHopRange = -1.0f;
+    public float maxHopRange = 1.0f;
+    public float minSpeed = 1.0f;
+    public float maxSpeed = 2.0f;
+    public float minHopDelaySeconds = 0.75f;
+    public float maxHopDelaySeconds = 1.5f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +35,8 @@ public class Roamer : MobileController // INHERITANCE
         {
             float randomSpeed = Random.Range(10.0f, 20.0f);
             // Debug.Log("RandomSpeed: " + randomSpeed);
-            float randomX = Random.Range(-10.0f, 10.0f);
-            float randomZ = Random.Range(-10.0f, 10.0f);
+            float randomX = Random.Range(minHopRange, maxHopRange);
+            float randomZ = Random.Range(-minHopRange, maxHopRange);
             Vector3 leftRight = new Vector3(randomX, 0.0f, 0.0f);
             Vector3 forwardBackward = new Vector3(0.0f, 0.0f, randomZ);
             // gameController.gameObject.transform.Translate(Vector3.Normalize(leftRight + forwardBackward) 

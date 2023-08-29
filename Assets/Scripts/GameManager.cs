@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Button quitButton;
+
+    [SerializeField] private TMP_Text messageWindow;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +73,11 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         DataManager.Instance.QuitGame();
+    }
+
+    // Since Debug.Log() isn't working, I need to display stuff to the screen.
+    public void ShowMessage(string message)
+    {
+        messageWindow.text = "Message: " + message;
     }
 }

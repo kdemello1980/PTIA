@@ -14,9 +14,6 @@ public class MobileController : Actor // INHERITANCE
     {
         IsMobile = true;
         playerGameObject = GameObject.Find("Player");
-        // playerGameObject = GameObject.Find("Player");
-        // GetActorRigidbody();
-        // InitializeActor();
     }
 
     // protected override void InitializeActor()

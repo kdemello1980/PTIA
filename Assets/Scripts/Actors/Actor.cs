@@ -16,6 +16,9 @@ public class Actor : MonoBehaviour
     // Mobile or stationary. Default to mobile.
     public virtual bool IsMobile { get; protected set; } = true;
 
+    // GameManager for logging.
+    protected GameManager gameManager { get; set; }
+
     // Rigidbody. All Actors have a Rigidbody.
 
     // The player's rigidbody
@@ -25,6 +28,7 @@ public class Actor : MonoBehaviour
     void Start()
     {
         playerGameObject = GameObject.Find("Player");
+        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -102,6 +106,7 @@ public class Actor : MonoBehaviour
     /// <summary>Trigger Consume() when a Rigidbody collision is entered.</summary>
     void OnCollisionEnter(Collision other)
     {
+        gameManager.ShowMessage("Collision detected.");
         // Just a reminder how to get at our actor object
         // float volume = other.gameObject.GetComponent<Actor>().ActorVolume;
         if (other.gameObject.CompareTag("Actor"))
