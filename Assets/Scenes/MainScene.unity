@@ -2379,9 +2379,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1604855367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c41bd5eeeb366a731a0441c2f466315d, type: 3}
+  m_Script: {fileID: 11500000, guid: b6e3f689c585a7a4d9b751d8de3eb0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minHopRange: -0.5
+  maxHopRange: 0.5
+  minSpeed: 0.25
+  maxSpeed: 0.5
+  minHopDelaySeconds: 0.75
+  maxHopDelaySeconds: 1.5
 --- !u!4 &1783391219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2472872934064387565, guid: 442076ffeab5f62b8a43cc0f75a90a2e,
@@ -2918,7 +2924,7 @@ GameObject:
   - component: {fileID: 2057652820}
   - component: {fileID: 2057652819}
   - component: {fileID: 2057652818}
-  - component: {fileID: 2057652817}
+  - component: {fileID: 2057652823}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -2926,24 +2932,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2057652817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057652816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e3f689c585a7a4d9b751d8de3eb0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minHopRange: -1
-  maxHopRange: 1
-  minSpeed: 1
-  maxSpeed: 2
-  minHopDelaySeconds: 0.75
-  maxHopDelaySeconds: 1.5
 --- !u!54 &2057652818
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3057,3 +3045,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2057652823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057652816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61630745ac5484e5096297e22c50def6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHopRange: -0.5
+  maxHopRange: 0.5
+  minSpeed: 0.25
+  maxSpeed: 0.5
+  minHopDelaySeconds: 0.75
+  maxHopDelaySeconds: 1.5

@@ -113,4 +113,6 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
         }
     }
 
+    // We should never need this.
+    public override void Consume(Collision other) { }
 } // end

@@ -11,8 +11,12 @@ public class StationaryController : Actor
         ActorVolume = 1.0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Consume(Collision other)
+    {
+        StationaryConsume();
+    }
+
+    public virtual void StationaryConsume()
     {
 
     }

@@ -51,4 +51,10 @@ public class Roamer : MobileController // INHERITANCE
             yield return new WaitForSeconds(randomSeconds);
         }
     }
+
+    // Implement the Consume() method.
+    public override void Consume(Collision other)
+    {
+
+    }
 }

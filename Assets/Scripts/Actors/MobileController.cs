@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobileController : Actor // INHERITANCE
+public abstract class MobileController : Actor // INHERITANCE
 {
     // Force multiplier. This is applied to AddForce(). Arbitrarily defaulted
     // to 1.0f.

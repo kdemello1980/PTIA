@@ -74,10 +74,4 @@ public class GameManager : MonoBehaviour
     {
         DataManager.Instance.QuitGame();
     }
-
-    // Since Debug.Log() isn't working, I need to display stuff to the screen.
-    public void ShowMessage(string message)
-    {
-        messageWindow.text = "Message: " + message;
-    }
 }
