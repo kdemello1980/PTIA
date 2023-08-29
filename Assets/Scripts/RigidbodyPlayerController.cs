@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.UI;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
-public class RigidbodyPlayerController : Actor
+public class RigidbodyPlayerController : Actor // INHERITANCE
 {
+    // Score text
+    public TMP_Text scoreText;
     // User inputs
     private float mouseInputX;
     private float mouseInputY;
@@ -39,6 +43,8 @@ public class RigidbodyPlayerController : Actor
         orientation = GameObject.Find("PlayerOrientation").GetComponent<Transform>();
         onGround = true;
         Physics.gravity = new Vector3(0, -10.0f, 0);
+        ActorVolume = 2.5f;
+        scoreText.text = "Remaining Volume: " + ActorVolume;
     }
 
     // Update is called once per frame
@@ -59,7 +65,7 @@ public class RigidbodyPlayerController : Actor
 
 
     // Move the player
-    void Move() // POLYMORPHISM
+    void Move()
     {
         if (onGround)
         {
