@@ -2400,6 +2400,7 @@ GameObject:
   - component: {fileID: 1828657224}
   - component: {fileID: 1828657228}
   - component: {fileID: 1828657229}
+  - component: {fileID: 1828657230}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Actor
@@ -2523,6 +2524,18 @@ Rigidbody:
   m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &1828657229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828657223}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61630745ac5484e5096297e22c50def6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1828657230
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

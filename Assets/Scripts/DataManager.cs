@@ -23,9 +23,6 @@ public class DataManager : MonoBehaviour
     public string SettingsScene { get; protected set; } = "SettingsScene"; // ENCAPSULATION
     public string HowtoScene { get; protected set; } = "HowtoScene"; // ENCAPSULATION
 
-    // This has been pissing me off because Start() doesn't propogate down the inheritance chain
-    public GameObject PlayerGameObject;// { get; set; }
-
     // Save slots
     public string[] SaveSlots = new string[5];
     // public List<string> SaveSlots = new List<string>();
@@ -38,7 +35,6 @@ public class DataManager : MonoBehaviour
             return;
         }
         Instance = this;
-        PlayerGameObject = GameObject.Find("Player");
         DontDestroyOnLoad(gameObject);
     }
 

@@ -6,13 +6,14 @@ public class MobileController : Actor // INHERITANCE
 {
     // Force multiplier. This is applied to AddForce(). Arbitrarily defaulted
     // to 1.0f.
-    protected virtual float ForceMultiplier { get; set; } = 1.0f; // ENCAPSULATION
+    protected virtual float ForceMultiplier { get; set; } = 0.5f; // ENCAPSULATION
 
 
     // Start is called before the first frame update
     void Start()
     {
         IsMobile = true;
+        playerGameObject = GameObject.Find("Player");
         // playerGameObject = GameObject.Find("Player");
         // GetActorRigidbody();
         // InitializeActor();
@@ -27,10 +28,7 @@ public class MobileController : Actor // INHERITANCE
     // All of our motion involves Rigidbody physics
     public void FixedUpdate()
     {
-        while (DataManager.Instance.IsGameActive)
-        {
-            Move();
-        }
+        Move();
     }
 
     // Apply a ForceMultiplier magnitude Impulse to the actor
@@ -41,12 +39,13 @@ public class MobileController : Actor // INHERITANCE
         // playerGameObject.GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
         GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
     }
+    // public abstract void Move();
 
     // Returns a normalized Vector3 pointing the the direction of 
     // the player.
     public virtual Vector3 FindPlayer() // ABSTRACTION
     {
-        Vector3 result = DataManager.Instance.PlayerGameObject.transform.position - gameObject.transform.position;
+        Vector3 result = playerGameObject.transform.position - gameObject.transform.position;
         return result.normalized;
     }
 

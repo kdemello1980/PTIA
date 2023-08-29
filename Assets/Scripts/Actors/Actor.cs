@@ -19,13 +19,12 @@ public class Actor : MonoBehaviour
     // Rigidbody. All Actors have a Rigidbody.
 
     // The player's rigidbody
-    // public GameObject playerGameObject { get; set; }
+    public GameObject playerGameObject { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the Rigidbody
-        // playerGameObject = GameObject.Find("Player");
+        playerGameObject = GameObject.Find("Player");
     }
 
     // Update is called once per frame
