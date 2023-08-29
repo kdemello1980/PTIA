@@ -105,7 +105,10 @@ public class Actor : MonoBehaviour
     {
         // Just a reminder how to get at our actor object
         // float volume = other.gameObject.GetComponent<Actor>().ActorVolume;
-        Consume(other.gameObject.GetComponent<Actor>());
+        if (other.gameObject.CompareTag("Actor"))
+        {
+            Consume(other.gameObject.GetComponent<Actor>());
+        }
     }
 
 }

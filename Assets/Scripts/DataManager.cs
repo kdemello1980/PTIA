@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
 
     /// <value><c>SkipHowtoScene</c> specifies whether a how to play screen should be shown in between the title scene and the main game scene.</value>
     public bool SkipHowtoScene { get; set; } = true;
-    public bool IsPaused { get; set; } = false;
+    public bool IsGameActive { get; set; } = true;
     public string TitleSceneName { get; protected set; } = "TitleScene";
     public string MainScene { get; protected set; } = "MainScene";
     public string GameOverScene { get; protected set; } = "GameOverScene";

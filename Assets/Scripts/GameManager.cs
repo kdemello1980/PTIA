@@ -42,21 +42,21 @@ public class GameManager : MonoBehaviour
     // Pause
     public void TogglePause()
     {
-        if (DataManager.Instance.IsPaused)
+        if (DataManager.Instance.IsGameActive)
         {
-            DataManager.Instance.IsPaused = false;
-            pauseScreen.gameObject.SetActive(false);
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            DataManager.Instance.IsPaused = true;
+            DataManager.Instance.IsGameActive = false;
             pauseScreen.gameObject.SetActive(true);
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+        }
+        else
+        {
+            DataManager.Instance.IsGameActive = true;
+            pauseScreen.gameObject.SetActive(false);
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 
