@@ -17,7 +17,7 @@ public class Actor : MonoBehaviour
     public virtual bool IsMobile { get; protected set; } = true;
 
     // GameManager for logging.
-    protected GameManager gameManager { get; set; }
+    public GameManager gameManager { get; set; }
 
     // Rigidbody. All Actors have a Rigidbody.
 
@@ -28,7 +28,7 @@ public class Actor : MonoBehaviour
     void Start()
     {
         playerGameObject = GameObject.Find("Player");
-        gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -57,6 +57,7 @@ public class Actor : MonoBehaviour
         if ((!IsToxic && !prey.IsToxic) || (IsToxic && prey.IsToxic))
         {
             // Absorb the prey
+            gameManager.ShowMessage("equal toxicity detected.");
             if (ActorVolume > prey.ActorVolume)
             {
                 ActorVolume += prey.ActorVolume;
@@ -106,7 +107,7 @@ public class Actor : MonoBehaviour
     /// <summary>Trigger Consume() when a Rigidbody collision is entered.</summary>
     void OnCollisionEnter(Collision other)
     {
-        gameManager.ShowMessage("Collision detected.");
+        // gameManager.ShowMessage("Collision detected.");
         // Just a reminder how to get at our actor object
         // float volume = other.gameObject.GetComponent<Actor>().ActorVolume;
         if (other.gameObject.CompareTag("Actor"))
