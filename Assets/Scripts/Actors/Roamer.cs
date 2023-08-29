@@ -22,18 +22,12 @@ public class Roamer : MobileController // INHERITANCE
         StartCoroutine(ChangeDirection());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // Borrow the MobileController's 
     public override void Move() // POLYMORPHISM
     {
         if (DataManager.Instance.IsGameActive)
         {
-            float randomSpeed = Random.Range(10.0f, 20.0f);
+            float randomSpeed = Random.Range(minSpeed, maxSpeed);
             // Debug.Log("RandomSpeed: " + randomSpeed);
             float randomX = Random.Range(minHopRange, maxHopRange);
             float randomZ = Random.Range(-minHopRange, maxHopRange);

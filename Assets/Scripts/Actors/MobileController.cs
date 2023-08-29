@@ -16,23 +16,16 @@ public class MobileController : Actor // INHERITANCE
         playerGameObject = GameObject.Find("Player");
     }
 
-    // protected override void InitializeActor()
-    // {
-    //     return;
-    // }
-
-
     // All of our motion involves Rigidbody physics
     public void FixedUpdate()
     {
-        Move();
+        Move(); // ABSTRACTION
     }
 
     // Apply a ForceMultiplier magnitude Impulse to the actor
     // in the direction of the player.
     public virtual void Move()
     {
-        // playerRb.AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
         // playerGameObject.GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
         GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
     }
