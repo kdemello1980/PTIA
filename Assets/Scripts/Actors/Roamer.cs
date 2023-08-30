@@ -53,8 +53,8 @@ public class Roamer : MobileController // INHERITANCE
     }
 
     // Implement the Consume() method.
-    public override void Consume(Collision other)
+    public override void Consume(Collision other) // ABSTRACTION
     {
-
+        return;
     }
 }

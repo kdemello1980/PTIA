@@ -9,7 +9,7 @@ using UnityEngine;
 /// which defines the behavior when different actors of different types interact.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Actor : MonoBehaviour
+public abstract class Actor : MonoBehaviour // ABSTRACTION
 {
     // Size of actor. Arbitrarily defaulted to .5.
     public virtual float ActorVolume { get; set; } = 0.5f;
@@ -52,7 +52,7 @@ public abstract class Actor : MonoBehaviour
     /// which defines the behavior of how child classes behave when they collide with each other.
     /// 
     /// Each concrete child class must implement this method. </summary>
-    public abstract void Consume(Collision other);
+    public abstract void Consume(Collision other); // ABSTRACTION
 
 
 
