@@ -45,6 +45,8 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
         Physics.gravity = new Vector3(0, -10.0f, 0);
         ActorVolume = 2.5f;
         scoreText.text = "Remaining Volume: " + ActorVolume;
+        float radius = SetScale(ActorVolume);
+        transform.localScale = new Vector3(radius, radius, radius);
     }
 
     // Update is called once per frame
@@ -60,7 +62,6 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
 
     void LateUpdate()
     {
-        // playerGameObjectPositionLastFrame = playerGameObject.transform.position;
     }
 
 
@@ -72,8 +73,10 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
 
-            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
+            // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+            moveDirection = orientation.forward.normalized * verticalInput + orientation.right.normalized * horizontalInput;
+            // GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
+            GetComponent<Rigidbody>().AddForce(moveDirection * velocity, ForceMode.Force);
 
             if (GetComponent<Rigidbody>().velocity.magnitude > maxVelocity)
             {
@@ -104,17 +107,19 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     }
 
     // Land
-    private void OnCollisionEnter(Collision other)
+    private new void OnCollisionEnter(Collision other)
     {
         if (!onGround && other.gameObject.CompareTag("Ground"))
         {
             onGround = true;
         }
+        base.OnCollisionEnter(other);
     }
 
-    /// <summary>Consume() defines how the Player interacts with other actors in the game.</summary>
-    // public override void Consume(Collision other)
-    // {
-
-    // }
+    /// <summary>Eat(Actor actor) calls the base Eat() and then updates the score.</summary>
+    public override void Eat(Actor actor)
+    {
+        base.Eat(actor);
+        scoreText.text = "Remaining Volume: " + ActorVolume;
+    }
 } // end

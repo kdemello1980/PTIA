@@ -27,19 +27,16 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// <param name="IsMobile">Mobile or stationary. Default to mobile (true).</param>
     public virtual bool IsMobile { get; protected set; } = true;
 
-    // GameManager for logging.
-    /// <param name="gameManager">probably not needed</param>
-    // public GameManager gameManager { get; set; }
+    /// <param name="gameManager">GameManager to get access to the score text, which will need to be updated when Consume() is called.</param>
+    public GameManager gameManager;
 
-
-    /// <param name="playerGameObject">The player's Rigidbody.</param>
-    public GameObject playerGameObject { get; set; }
+    /// <param name="playerGameObject">The GameObject of the Player.</param>
+    protected GameObject playerGameObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerGameObject = GameObject.Find("Player");
-        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerGameObject = GameObject.Find("Player");        // transform.localScale = new Vector3(radius, radius, radius);
     }
 
     // Update is called once per frame
@@ -62,11 +59,12 @@ public class Actor : MonoBehaviour // ABSTRACTION
     public void Consume(Collision other) // INHERITANCE
     {
         Actor actor = other.gameObject.GetComponent<Actor>();
-        if (!actor)
-        {
-            return;
-        }
-        else if (actor.CompareTag("Actor"))
+        // if (!actor)
+        // {
+        //     return;
+        // }
+        // else if (actor.CompareTag("Actor"))
+        if (actor.CompareTag("Actor"))
         {
             Eat(actor);
         }
@@ -91,7 +89,14 @@ public class Actor : MonoBehaviour // ABSTRACTION
             ActorVolume -= actor.ActorVolume;
             if (ActorVolume <= 0)
             {
-                DataManager.Instance.GoToGameOverScene();
+                if (gameObject.tag == "Player")
+                {
+                    DataManager.Instance.GoToGameOverScene();
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         else
@@ -102,18 +107,11 @@ public class Actor : MonoBehaviour // ABSTRACTION
             {
                 ActorVolume += actor.ActorVolume;
                 Destroy(actor.gameObject);
-                float radius = SetScale(ActorVolume);
-                transform.localScale = new Vector3(radius, radius, radius);
             }
-            else
-            {
-                // either the 2 actors are equal or the other one is bigger.
-                // if they're equal, both will return. If the other is bigger, 
-                // it will keep going.
-                return;
-            }
-
         }
+        float radius = SetScale(ActorVolume);
+        Debug.Log("New radius: " + radius);
+        transform.localScale = new Vector3(radius, radius, radius);
     }
 
     /// <summary>SetScale(float volume) takes the volume of an actor and returns the 
@@ -123,6 +121,10 @@ public class Actor : MonoBehaviour // ABSTRACTION
     ///  </summary>
     public virtual float SetScale(float volume)
     {
+        if (volume <= 0)
+        {
+            return 0.0001f;
+        }
         return (float)System.Math.Cbrt(3 * volume / 4 * System.Math.PI);
     }
 
@@ -131,7 +133,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// <summary>Trigger Consume() when a Rigidbody collision is entered.</summary>
     public void OnCollisionEnter(Collision other)
     {
-        Debug.Log("OnCollisionEnter()");
+        Debug.Log("OnCollisionEnter() " + gameObject.tag + " collided with " + other.gameObject.tag);
         // gameManager.ShowMessage("Collision detected.");
         // Just a reminder how to get at our actor object
         // float volume = other.gameObject.GetComponent<Actor>().ActorVolume;

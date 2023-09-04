@@ -15,10 +15,17 @@ public class Roamer : MobileController // INHERITANCE
     public float minHopDelaySeconds = 0.75f;
     public float maxHopDelaySeconds = 1.5f;
 
+    // Size range for Roamers.
+    public float minVolume = 0.25f;
+    public float maxVolume = 0.75f;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        float ActorVolume = Random.Range(minVolume, maxVolume);
+        float radius = SetScale(ActorVolume);
+        transform.localScale = new Vector3(radius, radius, radius);
         StartCoroutine(ChangeDirection());
     }
 

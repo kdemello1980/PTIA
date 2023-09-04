@@ -17,6 +17,10 @@ public class GameoverManager : MonoBehaviour
         DataManager.Instance.QuitGame();
     }
 
-    void Start() { }
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     void Update() { }
 }
