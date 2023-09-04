@@ -113,6 +113,9 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
         }
     }
 
-    // We should never need this.
-    public override void Consume(Collision other) { }
+    /// <summary>Consume() defines how the Player interacts with other actors in the game.</summary>
+    public override void Consume(Collision other)
+    {
+
+    }
 } // end

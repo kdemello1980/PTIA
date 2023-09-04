@@ -2,37 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 /// <summary>Actor is the base class of objects that the player interacts with. 
 /// They are either safe or toxic, mobile or stationary, and have hit points.
 /// 
 /// Actor is an abstract class, because it contains one abstract method, Consume(),
 /// which defines the behavior when different actors of different types interact.
 /// </summary>
+/// 
+
+// I'm not sure it's necessary to make this abstract.  A virtual function would 
+// suffice.1 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Actor : MonoBehaviour // ABSTRACTION
+public class Actor : MonoBehaviour // ABSTRACTION
 {
-    // Size of actor. Arbitrarily defaulted to .5.
+    /// <param name="ActorVolume">Size of actor. Arbitrarily defaulted to .5.</param>
     public virtual float ActorVolume { get; set; } = 0.5f;
 
-    // Safe or toxic. Default to safe (true)
+    /// <param name="IsToxic">Safe or toxic. Default to safe (true).</param>
     public virtual bool IsToxic { get; set; } = false;
 
-    // Mobile or stationary. Default to mobile.
+    /// <param name="IsMobile">Mobile or stationary. Default to mobile (true).</param>
     public virtual bool IsMobile { get; protected set; } = true;
 
     // GameManager for logging.
-    public GameManager gameManager { get; set; }
+    /// <param name="gameManager">probably not needed</param>
+    // public GameManager gameManager { get; set; }
 
-    // Rigidbody. All Actors have a Rigidbody.
 
-    // The player's rigidbody
+    /// <param name="playerGameObject">The player's Rigidbody.</param>
     public GameObject playerGameObject { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         playerGameObject = GameObject.Find("Player");
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -48,11 +55,17 @@ public abstract class Actor : MonoBehaviour // ABSTRACTION
 
     }
 
-    /// <summary>public abstract void Consume(Collision other) is called by OnCollisionEnter(Collision other)
+    /// <summary><c>public abstract void Consume(Collision other)</c> is called by <c>OnCollisionEnter(Collision other)</c>
     /// which defines the behavior of how child classes behave when they collide with each other.
     /// 
     /// Each concrete child class must implement this method. </summary>
-    public abstract void Consume(Collision other); // ABSTRACTION
+    public virtual void Consume(Collision other) // INHERITANCE
+    {
+        if (!other.gameObject.GetComponent<Actor>())
+        {
+            return;
+        }
+    }
 
 
 
