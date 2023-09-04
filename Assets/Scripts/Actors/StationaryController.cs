@@ -11,13 +11,13 @@ public class StationaryController : Actor
         ActorVolume = 1.0f;
     }
 
-    public override void Consume(Collision other)
-    {
-        StationaryConsume();
-    }
+    // public void Consume(Collision other)
+    // {
+    //     StationaryConsume();
+    // }
 
-    public virtual void StationaryConsume()
-    {
+    // public virtual void StationaryConsume()
+    // {
 
-    }
+    // }
 }

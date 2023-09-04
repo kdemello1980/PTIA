@@ -101,7 +101,6 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
             onGround = false;
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
-
     }
 
     // Land
@@ -114,8 +113,8 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     }
 
     /// <summary>Consume() defines how the Player interacts with other actors in the game.</summary>
-    public override void Consume(Collision other)
-    {
+    // public override void Consume(Collision other)
+    // {
 
-    }
+    // }
 } // end
