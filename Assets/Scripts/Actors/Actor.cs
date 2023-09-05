@@ -59,11 +59,6 @@ public class Actor : MonoBehaviour // ABSTRACTION
     public void Consume(Collision other) // INHERITANCE
     {
         Actor actor = other.gameObject.GetComponent<Actor>();
-        // if (!actor)
-        // {
-        //     return;
-        // }
-        // else if (actor.CompareTag("Actor"))
         if (actor.CompareTag("Actor"))
         {
             Eat(actor);
@@ -87,6 +82,8 @@ public class Actor : MonoBehaviour // ABSTRACTION
             // Subtract the actor's volume from our own and game over
             // if we're 0 or below.
             ActorVolume -= actor.ActorVolume;
+            // float toxicRadius = ComputeRadius(ActorVolume);
+            // actor.GetComponent<GameObject>().transform.localScale = new Vector3(toxicRadius, toxicRadius, toxicRadius);
             if (ActorVolume <= 0)
             {
                 if (gameObject.tag == "Player")
@@ -109,8 +106,8 @@ public class Actor : MonoBehaviour // ABSTRACTION
                 Destroy(actor.gameObject);
             }
         }
-        float radius = SetScale(ActorVolume);
-        Debug.Log("New radius: " + radius);
+        float radius = ComputeRadius(ActorVolume);
+        // Debug.Log("New radius: " + radius);
         transform.localScale = new Vector3(radius, radius, radius);
     }
 
@@ -119,7 +116,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// the smallest surface area to volume ratio.
     /// <param name="volume">float. Volume of the sphere to compute the radius of.</param>
     ///  </summary>
-    public virtual float SetScale(float volume)
+    public virtual float ComputeRadius(float volume)
     {
         if (volume <= 0)
         {
@@ -133,8 +130,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// <summary>Trigger Consume() when a Rigidbody collision is entered.</summary>
     public void OnCollisionEnter(Collision other)
     {
-        Debug.Log("OnCollisionEnter() " + gameObject.tag + " collided with " + other.gameObject.tag);
-        // gameManager.ShowMessage("Collision detected.");
+        // Debug.Log("OnCollisionEnter() " + gameObject.tag + " collided with " + other.gameObject.tag);
         // Just a reminder how to get at our actor object
         // float volume = other.gameObject.GetComponent<Actor>().ActorVolume;
         if (other.gameObject.CompareTag("Actor"))

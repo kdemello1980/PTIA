@@ -24,7 +24,7 @@ public class Roamer : MobileController // INHERITANCE
     void Start()
     {
         float ActorVolume = Random.Range(minVolume, maxVolume);
-        float radius = SetScale(ActorVolume);
+        float radius = ComputeRadius(ActorVolume);
         transform.localScale = new Vector3(radius, radius, radius);
         StartCoroutine(ChangeDirection());
     }
@@ -58,10 +58,4 @@ public class Roamer : MobileController // INHERITANCE
             yield return new WaitForSeconds(randomSeconds);
         }
     }
-
-    // Implement the Consume() method.
-    // public override void Consume(Collision other) // ABSTRACTION
-    // {
-    //     return;
-    // }
 }

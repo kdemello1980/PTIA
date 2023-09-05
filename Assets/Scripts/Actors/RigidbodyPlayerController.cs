@@ -45,7 +45,7 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
         Physics.gravity = new Vector3(0, -10.0f, 0);
         ActorVolume = 2.5f;
         scoreText.text = "Remaining Volume: " + ActorVolume;
-        float radius = SetScale(ActorVolume);
+        float radius = ComputeRadius(ActorVolume);
         transform.localScale = new Vector3(radius, radius, radius);
     }
 
@@ -73,10 +73,11 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
 
-            // moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-            moveDirection = orientation.forward.normalized * verticalInput + orientation.right.normalized * horizontalInput;
-            // GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
-            GetComponent<Rigidbody>().AddForce(moveDirection * velocity, ForceMode.Force);
+            // moveDirection = orientation.forward.normalized * verticalInput + orientation.right.normalized * horizontalInput;
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+            moveDirection = new Vector3(moveDirection.x, 0.0f, moveDirection.z);
+
+            GetComponent<Rigidbody>().AddForce(moveDirection.normalized * velocity, ForceMode.Force);
 
             if (GetComponent<Rigidbody>().velocity.magnitude > maxVelocity)
             {

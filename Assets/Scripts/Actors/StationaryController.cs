@@ -10,14 +10,4 @@ public class StationaryController : Actor
         IsMobile = false;
         ActorVolume = 1.0f;
     }
-
-    // public void Consume(Collision other)
-    // {
-    //     StationaryConsume();
-    // }
-
-    // public virtual void StationaryConsume()
-    // {
-
-    // }
 }

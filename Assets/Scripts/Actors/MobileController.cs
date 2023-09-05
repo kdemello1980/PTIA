@@ -24,10 +24,8 @@ public class MobileController : Actor // INHERITANCE & ABSTRACTION
     // in the direction of the player.
     public virtual void Move()
     {
-        // playerGameObject.GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
         GetComponent<Rigidbody>().AddForce(FindPlayer() * ForceMultiplier, ForceMode.Impulse);
     }
-    // public abstract void Move();
 
     // Returns a normalized Vector3 pointing the the direction of 
     // the player.
