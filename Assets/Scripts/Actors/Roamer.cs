@@ -34,7 +34,8 @@ public class Roamer : MobileController // INHERITANCE
     {
         if (DataManager.Instance.IsGameActive)
         {
-            float randomSpeed = Random.Range(minSpeed, maxSpeed);
+            if ()
+                float randomSpeed = Random.Range(minSpeed, maxSpeed);
             // Debug.Log("RandomSpeed: " + randomSpeed);
             float randomX = Random.Range(minHopRange, maxHopRange);
             float randomZ = Random.Range(minHopRange, maxHopRange);

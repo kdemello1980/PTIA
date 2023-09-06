@@ -33,6 +33,9 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// <param name="playerGameObject">The GameObject of the Player.</param>
     protected GameObject playerGameObject;
 
+    /// <param name="IsGrounded">True if our Rigidbody is in contact with the ground.</param>
+    puplic bool IsGrounded { get; set; } = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -139,4 +142,16 @@ public class Actor : MonoBehaviour // ABSTRACTION
         }
     }
 
+    /// <summary></summary>
+    public void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            IsGrounded = true;
+        }
+        else
+        {
+            IsGrounded = false;
+        }
+    }
 }
