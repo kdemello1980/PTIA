@@ -8,7 +8,7 @@ https://learn.unity.com/tutorial/submission-programming-theory-in-action
 
 A working title.
 
-You are an amorphous blob. With a gun, somehow. Anywho, things keep popping up everywhere and you have to eat what won't kill you, and not touch what will. Like in _Time Bandits_, touching evil is inadvisible.
+You are an amorphous blob. With a gun, someday. Anywho, things keep popping up everywhere and you have to eat what won't kill you, and not touch what will. Like in _Time Bandits_, touching evil is inadvisible.
 
 # Serious Technical Details
 
