@@ -68,7 +68,7 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     // Move the player
     void Move()
     {
-        if (onGround)
+        if (IsGrounded)
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
@@ -100,9 +100,8 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     // Jump
     void Jump()
     {
-        if (onGround)
+        if (IsGrounded)
         {
-            onGround = false;
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
@@ -110,10 +109,10 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     // Land
     private new void OnCollisionEnter(Collision other)
     {
-        if (!onGround && other.gameObject.CompareTag("Ground"))
-        {
-            onGround = true;
-        }
+        // if (!onGround && other.gameObject.CompareTag("Ground"))
+        // {
+        //     onGround = true;
+        // }
         base.OnCollisionEnter(other);
     }
 
