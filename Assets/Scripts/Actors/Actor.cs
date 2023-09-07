@@ -34,7 +34,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     protected GameObject playerGameObject;
 
     /// <param name="IsGrounded">True if our Rigidbody is in contact with the ground.</param>
-    puplic bool IsGrounded { get; set; } = true;
+    public bool IsGrounded { get; set; } = true;
 
     // Start is called before the first frame update
     void Start()
@@ -140,16 +140,27 @@ public class Actor : MonoBehaviour // ABSTRACTION
         {
             Consume(other);
         }
+
+        // Land after becoming airborne
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            IsGrounded = true;
+        }
+
     }
 
     /// <summary></summary>
     public void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             IsGrounded = true;
         }
-        else
+    }
+
+    public void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
         {
             IsGrounded = false;
         }

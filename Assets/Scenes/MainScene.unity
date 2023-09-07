@@ -2297,6 +2297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8034311602135007221, guid: 9a941c5e79f608a2097c294e385dca50,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034311602135007221, guid: 9a941c5e79f608a2097c294e385dca50,
+        type: 3}
       propertyPath: m_TagString
       value: Actor
       objectReference: {fileID: 0}
@@ -2757,7 +2762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &2057652818
 Rigidbody:
   m_ObjectHideFlags: 0

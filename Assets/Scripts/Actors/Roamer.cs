@@ -34,17 +34,21 @@ public class Roamer : MobileController // INHERITANCE
     {
         if (DataManager.Instance.IsGameActive)
         {
-            if ()
+            if (IsGrounded)
+            {
                 float randomSpeed = Random.Range(minSpeed, maxSpeed);
-            // Debug.Log("RandomSpeed: " + randomSpeed);
-            float randomX = Random.Range(minHopRange, maxHopRange);
-            float randomZ = Random.Range(minHopRange, maxHopRange);
-            Vector3 leftRight = new Vector3(randomX, 0.0f, 0.0f);
-            Vector3 forwardBackward = new Vector3(0.0f, 0.0f, randomZ);
-            // gameController.gameObject.transform.Translate(Vector3.Normalize(leftRight + forwardBackward) 
-            // * randomSpeed);
-            GetComponent<Rigidbody>().AddForce(Vector3.Normalize(leftRight + forwardBackward) * randomSpeed,
-                ForceMode.Impulse);
+                // Debug.Log("RandomSpeed: " + randomSpeed);
+                float randomX = Random.Range(minHopRange, maxHopRange);
+                float randomY = Random.Range(0.0f, maxHopRange);
+                float randomZ = Random.Range(minHopRange, maxHopRange);
+                Vector3 leftRight = new Vector3(randomX, 0.0f, 0.0f);
+                Vector3 forwardBackward = new Vector3(0.0f, 0.0f, randomZ);
+                Vector3 upDown = new Vector3(0.0f, randomY, 0.0f);
+                // gameController.gameObject.transform.Translate(Vector3.Normalize(leftRight + forwardBackward) 
+                // * randomSpeed);
+                GetComponent<Rigidbody>().AddForce(Vector3.Normalize(leftRight + forwardBackward + upDown) * randomSpeed,
+                    ForceMode.Impulse);
+            }
         }
     }
 
