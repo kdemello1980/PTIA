@@ -34,7 +34,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     protected GameObject playerGameObject;
 
     /// <param name="IsGrounded">True if our Rigidbody is in contact with the ground.</param>
-    public bool IsGrounded { get; set; } = true;
+    public bool IsGrounded { get; set; } = false;
 
     // Start is called before the first frame update
     void Start()
@@ -154,6 +154,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            // Debug.Log("Grounded");
             IsGrounded = true;
         }
     }
@@ -162,6 +163,7 @@ public class Actor : MonoBehaviour // ABSTRACTION
     {
         if (other.gameObject.CompareTag("Ground"))
         {
+            // Debug.Log("Not Grounded");
             IsGrounded = false;
         }
     }

@@ -8,16 +8,16 @@ using UnityEngine;
 public class Roamer : MobileController // INHERITANCE
 {
     // Variables unique to the Roamer clade.
-    public float minHopRange = -0.5f;
-    public float maxHopRange = 0.5f;
-    public float minSpeed = 0.25f;
-    public float maxSpeed = 0.5f;
-    public float minHopDelaySeconds = 0.75f;
-    public float maxHopDelaySeconds = 1.5f;
+    public float minHopRange = -2.5f;
+    public float maxHopRange = 2.5f;
+    public float minSpeed = 4.5f;
+    public float maxSpeed = 10.0f;
+    public float minHopDelaySeconds = 1.0f;
+    public float maxHopDelaySeconds = 2.0f;
 
     // Size range for Roamers.
     public float minVolume = 0.25f;
-    public float maxVolume = 0.75f;
+    public float maxVolume = 1.5f;
 
 
     // Start is called before the first frame update
