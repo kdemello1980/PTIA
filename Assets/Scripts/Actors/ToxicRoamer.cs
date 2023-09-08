@@ -8,5 +8,6 @@ public class ToxicRoamer : Roamer // INHERITANCE/POLYMORPHISM
     void Start()
     {
         IsToxic = true;
+        playerGameObject = GameObject.Find("Player");
     }
 }

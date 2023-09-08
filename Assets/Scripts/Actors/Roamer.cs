@@ -15,6 +15,9 @@ public class Roamer : MobileController // INHERITANCE
     public float minHopDelaySeconds = 1.0f;
     public float maxHopDelaySeconds = 2.0f;
 
+    // Influence of player-biasing of random hopping
+    public float playerDirectionBias = 0.5f;
+
     // Size range for Roamers.
     public float minVolume = 0.25f;
     public float maxVolume = 1.5f;
@@ -27,6 +30,7 @@ public class Roamer : MobileController // INHERITANCE
         float radius = ComputeRadius(ActorVolume);
         transform.localScale = new Vector3(radius, radius, radius);
         StartCoroutine(ChangeDirection());
+        playerGameObject = GameObject.Find("Player");
     }
 
     // Borrow the MobileController's 
@@ -46,7 +50,7 @@ public class Roamer : MobileController // INHERITANCE
                 Vector3 upDown = new Vector3(0.0f, randomY, 0.0f);
                 // gameController.gameObject.transform.Translate(Vector3.Normalize(leftRight + forwardBackward) 
                 // * randomSpeed);
-                GetComponent<Rigidbody>().AddForce(Vector3.Normalize(leftRight + forwardBackward + upDown) * randomSpeed,
+                GetComponent<Rigidbody>().AddForce(Vector3.Normalize(leftRight + forwardBackward + upDown + playerDirectionBias * FindPlayer()) * randomSpeed,
                     ForceMode.Impulse);
             }
         }
