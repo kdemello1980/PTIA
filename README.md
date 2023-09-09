@@ -4,7 +4,7 @@ Unity programming theory project.
 
 https://learn.unity.com/tutorial/submission-programming-theory-in-action
 
-# New Text (a game that has nothing to do with new text)
+# CLADE
 
 A working title.
 
