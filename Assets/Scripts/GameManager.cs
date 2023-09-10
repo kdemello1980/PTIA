@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private float spawnRateSeconds { get; set; } = 0.25f;
     [SerializeField]
     private GameObject pauseScreen;
 
@@ -18,12 +19,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Button quitButton;
 
+    [SerializeField]
+    private int startingActorCount { get; set; } = 1000;
+
     [SerializeField] private TMP_Text messageWindow;
     // Start is called before the first frame update
     void Start()
     {
-
+        InitializePlayfield();
+        StartCoroutine(RespawnActors());
     }
+
+    public List<GameObject> prefabs = new List<GameObject>();
+    public Terrain ground;
 
     // Set the cursor lockstate on load
     void Awake()
@@ -73,5 +81,36 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         DataManager.Instance.QuitGame();
+    }
+
+    // Initialize the playfield
+    public void InitializePlayfield()
+    {
+        for (int i = 0; i < startingActorCount; i++)
+        {
+            // Find the starting vector.
+            SpawnActor();
+        }
+    }
+
+    void SpawnActor()
+    {
+        Vector3 starting = new Vector3(Random.Range(-DataManager.Instance.GameFieldSize, DataManager.Instance.GameFieldSize),
+            0.0f,
+            Random.Range(-DataManager.Instance.GameFieldSize, DataManager.Instance.GameFieldSize));
+
+        starting.y = ground.SampleHeight(starting);
+        GameObject newThing = Instantiate(prefabs[Random.Range(0, prefabs.Count)]);
+        newThing.transform.position = starting;
+    }
+
+    // Periodically add new actors
+    IEnumerator RespawnActors()
+    {
+        while (DataManager.Instance.IsGameActive)
+        {
+            yield return new WaitForSeconds(Random.Range(0.0f, spawnRateSeconds));
+            SpawnActor();
+        }
     }
 }

@@ -16,7 +16,6 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     public float verticalInput;
     [SerializeField] private KeyCode jumpKey;
     [SerializeField] private float jumpForce;
-    [SerializeField] private bool onGround;
     public float slowDownFactor = 1000.0f;
 
     // Starting position and rotation
@@ -41,7 +40,6 @@ public class RigidbodyPlayerController : Actor // INHERITANCE
     void Start()
     {
         orientation = GameObject.Find("PlayerOrientation").GetComponent<Transform>();
-        onGround = true;
         Physics.gravity = new Vector3(0, -10.0f, 0);
         ActorVolume = 2.5f;
         scoreText.text = "Remaining Volume: " + ActorVolume;
