@@ -8,5 +8,6 @@ public class ToxicStationaryController : StationaryController
     void Start()
     {
         IsToxic = true;
+        playerGameObject = GameObject.Find("Player");
     }
 }

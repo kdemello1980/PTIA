@@ -9,5 +9,7 @@ public class StationaryController : Actor
     {
         IsMobile = false;
         ActorVolume = 1.0f;
+        playerGameObject = GameObject.Find("Player");
+
     }
 }

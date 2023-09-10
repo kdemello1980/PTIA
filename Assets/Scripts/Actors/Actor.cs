@@ -98,6 +98,10 @@ public class Actor : MonoBehaviour // ABSTRACTION
                     Destroy(gameObject);
                 }
             }
+            else
+            {
+                Destroy(actor.gameObject);
+            }
         }
         else
         {

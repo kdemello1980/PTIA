@@ -22,6 +22,9 @@ public class Roamer : MobileController // INHERITANCE
     public float minVolume = 0.25f;
     public float maxVolume = 1.5f;
 
+    // Lifespan average for Roamers
+    public float lifeSpanSeconds = 5.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,7 @@ public class Roamer : MobileController // INHERITANCE
         float radius = ComputeRadius(ActorVolume);
         transform.localScale = new Vector3(radius, radius, radius);
         StartCoroutine(ChangeDirection());
+        StartCoroutine(EndOfLife());
         playerGameObject = GameObject.Find("Player");
     }
 
@@ -61,10 +65,17 @@ public class Roamer : MobileController // INHERITANCE
         // Debug.Log("ChangeDirection()");
         while (DataManager.Instance.IsGameActive)
         {
-            float randomSeconds = Random.Range(.25f, 1.5f);
+            float randomSeconds = Random.Range(minHopDelaySeconds, maxHopDelaySeconds);
             // Debug.Log("Moving controller in randomSeconds" + randomSeconds);
             Move();
             yield return new WaitForSeconds(randomSeconds);
         }
+    }
+
+    public IEnumerator EndOfLife()
+    {
+        float randomLife = Random.Range(0.0f, lifeSpanSeconds);
+        yield return new WaitForSeconds(randomLife);
+        Destroy(gameObject);
     }
 }
