@@ -9,5 +9,6 @@ public class ToxicStationaryController : StationaryController
     {
         IsToxic = true;
         playerGameObject = GameObject.Find("Player");
+        ActorVolume = .75f;
     }
 }

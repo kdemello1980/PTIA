@@ -80,42 +80,47 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// </summary>
     public virtual void Eat(Actor actor)
     {
-        if (actor.IsToxic)
+        EatSimplified(actor);
+        float radius = ComputeRadius(ActorVolume);
+        // Debug.Log("New radius: " + radius);
+        transform.localScale = new Vector3(radius, radius, radius);
+    }
+
+    void EatSimplified(Actor actor)
+    {
+        if (ActorVolume > actor.ActorVolume)
         {
-            // Subtract the actor's volume from our own and game over
-            // if we're 0 or below.
-            ActorVolume -= actor.ActorVolume;
-            // float toxicRadius = ComputeRadius(ActorVolume);
-            // actor.GetComponent<GameObject>().transform.localScale = new Vector3(toxicRadius, toxicRadius, toxicRadius);
-            if (ActorVolume <= 0)
+            // If either or both or toxic, subtract, else add
+            if (IsToxic || actor.IsToxic)
             {
-                if (gameObject.tag == "Player")
-                {
-                    DataManager.Instance.GoToGameOverScene();
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
+                ActorVolume -= actor.ActorVolume;
             }
             else
             {
-                Destroy(actor.gameObject);
+                ActorVolume += actor.ActorVolume;
+            }
+
+            Destroy(actor.gameObject);
+
+            if (CompareTag("Player"))
+            {
+                if (ActorVolume <= 0)
+                {
+                    DataManager.Instance.GoToGameOverScene();
+                }
             }
         }
         else
         {
-            // If the other actor is bigger, return. Their
-            // Consume() will handle this case.
-            if (actor.ActorVolume < ActorVolume)
+            if (CompareTag("Player"))
             {
-                ActorVolume += actor.ActorVolume;
-                Destroy(actor.gameObject);
+                DataManager.Instance.GoToGameOverScene();
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
-        float radius = ComputeRadius(ActorVolume);
-        // Debug.Log("New radius: " + radius);
-        transform.localScale = new Vector3(radius, radius, radius);
     }
 
     /// <summary>SetScale(float volume) takes the volume of an actor and returns the 

@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float spawnRateSeconds { get; set; } = 0.25f;
+    [SerializeField] private float spawnRateSeconds { get; set; } = 0.05f;
     [SerializeField]
     private GameObject pauseScreen;
 
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private Button quitButton;
 
     [SerializeField]
-    private int startingActorCount { get; set; } = 1000;
+    private int startingActorCount { get; set; } = 5000;
 
     [SerializeField] private TMP_Text messageWindow;
     // Start is called before the first frame update
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
             0.0f,
             Random.Range(-DataManager.Instance.GameFieldSize, DataManager.Instance.GameFieldSize));
 
-        starting.y = ground.SampleHeight(starting);
+        starting.y = ground.SampleHeight(starting) + 1;
         GameObject newThing = Instantiate(prefabs[Random.Range(0, prefabs.Count)]);
         newThing.transform.position = starting;
     }

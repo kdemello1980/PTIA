@@ -7,12 +7,14 @@ public class MobileController : Actor // INHERITANCE & ABSTRACTION
     // Force multiplier. This is applied to AddForce(). Arbitrarily defaulted
     // to 1.0f.
     protected virtual float ForceMultiplier { get; set; } = 0.15f; // ENCAPSULATION
+    public float lifeSpanSeconds = 10.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         IsMobile = true;
         playerGameObject = GameObject.Find("Player");
+        StartCoroutine(EndOfLife());
     }
 
     // All of our motion involves Rigidbody physics
@@ -36,4 +38,10 @@ public class MobileController : Actor // INHERITANCE & ABSTRACTION
         return result.normalized;
     }
 
+    public IEnumerator EndOfLife()
+    {
+        float randomLife = Random.Range(0.0f, lifeSpanSeconds);
+        yield return new WaitForSeconds(randomLife);
+        Destroy(gameObject);
+    }
 }

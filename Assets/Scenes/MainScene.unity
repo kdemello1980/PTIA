@@ -2351,11 +2351,11 @@ MonoBehaviour:
   quitButton: {fileID: 848722879}
   messageWindow: {fileID: 1962301686}
   prefabs:
-  - {fileID: 4533445017592548835, guid: f39f20ad5eef03834a645d7e5125fc3f, type: 3}
   - {fileID: 903549422431796205, guid: eef5df607e9d3440e81c68c750eac5b9, type: 3}
   - {fileID: 8034311602135007221, guid: 9a941c5e79f608a2097c294e385dca50, type: 3}
   - {fileID: 8348134763133732515, guid: 439356f855f565f45b597c1905cd968a, type: 3}
   - {fileID: 4354366985585433671, guid: f46817a451236ed42ab986c2397a23f9, type: 3}
+  - {fileID: 4533445017592548835, guid: f39f20ad5eef03834a645d7e5125fc3f, type: 3}
   ground: {fileID: 105480705}
 --- !u!1 &1803937340
 GameObject:
