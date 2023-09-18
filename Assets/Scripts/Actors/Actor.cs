@@ -42,6 +42,13 @@ public class Actor : MonoBehaviour // ABSTRACTION
         playerGameObject = GameObject.Find("Player");        // transform.localScale = new Vector3(radius, radius, radius);
     }
 
+
+    // AmbientActorSoundPath - path to a sound file that is looped and emitted by the Actor.
+    public string AmbientActorSoundPath { get; protected set; }
+
+    // ActorCollisionSoundPath - path to a sound file that is looped and emitted by the Actor.
+    public string ActorCollisionSoundPath { get; protected set; }
+
     // Update is called once per frame
     void Update()
     {

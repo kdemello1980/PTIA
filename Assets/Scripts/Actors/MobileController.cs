@@ -9,6 +9,14 @@ public class MobileController : Actor // INHERITANCE & ABSTRACTION
     protected virtual float ForceMultiplier { get; set; } = 0.15f; // ENCAPSULATION
     public float lifeSpanSeconds = 10.0f;
 
+    // MobileControllerCollisionAudioPath - path to the audio file that is looped and emitted any
+    //                                    MobileActor.
+    public string MobileControllerCollisionAudioPath { get; set; } 
+
+    // MobileControllerCollisionAudioPath - path to the audio file that is emitted 
+    // by a MobileController when a collision has occured.
+    public string MobileControllerAmbientAudioPath { get; set; 
+
     // Start is called before the first frame update
     void Start()
     {
