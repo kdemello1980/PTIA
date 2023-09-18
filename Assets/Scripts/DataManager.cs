@@ -23,8 +23,27 @@ public class DataManager : MonoBehaviour
     public string SettingsScene { get; protected set; } = "SettingsScene"; // ENCAPSULATION
     public string HowtoScene { get; protected set; } = "HowtoScene"; // ENCAPSULATION
 
-    // Music file
-    public string BackgroundMusicPath { get; set;}
+
+    /// <summary>
+    /// MusicVolume global volume level of background music.
+    /// </summary>
+    private float musicVolume = 100.0f;
+    public float MusicVolume 
+    { 
+        get { return musicVolume } = 100.0f; 
+        protected set { musicVolume = value > 100.0f ? 100.0f : value }
+    }
+
+    /// <summary>
+    /// SoundEffectsVolume global volume level of sound effects.
+    /// </summary>
+    private float soundEffectsVolume = 100.0f;
+    public float SoundEffectsVolume 
+    { 
+        get { return soundEffectsVolume} = 100.0f; 
+        protected set { soundEffectsVolume = value > 100.0f ? 100.0f : value}
+    }
+
 
     // Game field size
     public float GameFieldSize { get; set; } = 250.0f;

@@ -61,6 +61,11 @@ public class Actor : MonoBehaviour // ABSTRACTION
     /// Each concrete child class must implement this method. </summary>
     public void Consume(Collision other) // INHERITANCE
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="Actor"></typeparam>
+        /// <returns></returns>
         Actor actor = other.gameObject.GetComponent<Actor>();
         if (actor.CompareTag("Actor"))
         {
