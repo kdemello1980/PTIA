@@ -23,6 +23,9 @@ public class DataManager : MonoBehaviour
     public string SettingsScene { get; protected set; } = "SettingsScene"; // ENCAPSULATION
     public string HowtoScene { get; protected set; } = "HowtoScene"; // ENCAPSULATION
 
+    // Music file
+    public string BackgroundMusicPath { get; set;}
+
     // Game field size
     public float GameFieldSize { get; set; } = 250.0f;
 
