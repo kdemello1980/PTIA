@@ -15,7 +15,7 @@ public class MobileController : Actor // INHERITANCE & ABSTRACTION
 
     // MobileControllerCollisionAudioPath - path to the audio file that is emitted 
     // by a MobileController when a collision has occured.
-    public string MobileControllerAmbientAudioPath { get; set; 
+    public string MobileControllerAmbientAudioPath { get; set; }
 
     // Start is called before the first frame update
     void Start()
