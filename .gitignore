@@ -10,6 +10,9 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 /[Ll]inux*/
+/[Ww]indows*/
+/[Ww]eb*/
+/[Ww]ebgl_sharing*/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
